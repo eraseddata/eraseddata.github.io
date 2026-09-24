@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>user not found</title>
 
 <style>
+
+/* ------------------------------
+   BASE
+------------------------------ */
+
 * {
   box-sizing: border-box;
 }
@@ -16,536 +23,1023 @@ html {
 
 body {
   margin: 0;
-  background: #020202;
+  background: #010101;
   color: #eee9e6;
   font-family: "Courier New", monospace;
   overflow-x: hidden;
 }
 
-/* grain */
+
+/* ------------------------------
+   GRAIN
+------------------------------ */
+
 body::after {
   content: "";
   position: fixed;
   inset: 0;
   z-index: 100;
   pointer-events: none;
-  opacity: .12;
+
+  opacity: .11;
+
   background-image:
     repeating-radial-gradient(
       circle at 20% 30%,
-      rgba(255,255,255,.15) 0px,
+      rgba(255,255,255,.14) 0px,
       transparent 1px,
       transparent 3px
     );
+
   background-size: 7px 7px;
+
   animation: noise .18s steps(2) infinite;
 }
 
-/* scanlines */
+
+/* ------------------------------
+   SCANLINES
+------------------------------ */
+
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: 99;
   pointer-events: none;
+
   background:
     repeating-linear-gradient(
       to bottom,
       transparent 0px,
       transparent 3px,
-      rgba(255,255,255,.025) 4px
+      rgba(255,255,255,.022) 4px
     );
 }
 
+
 @keyframes noise {
-  0% { transform: translate(0,0); }
-  25% { transform: translate(-2px,1px); }
-  50% { transform: translate(2px,-1px); }
-  75% { transform: translate(1px,2px); }
-  100% { transform: translate(0,0); }
+
+  0% {
+    transform: translate(0,0);
+  }
+
+  25% {
+    transform: translate(-2px,1px);
+  }
+
+  50% {
+    transform: translate(2px,-1px);
+  }
+
+  75% {
+    transform: translate(1px,2px);
+  }
+
+  100% {
+    transform: translate(0,0);
+  }
+
 }
+
+
+/* ------------------------------
+   SYSTEM TEXT
+------------------------------ */
 
 .archive {
   position: fixed;
   top: 18px;
   left: 18px;
+
   z-index: 50;
+
   font-size: 9px;
   letter-spacing: .25em;
-  color: rgba(255,255,255,.36);
+  line-height: 1.8;
+
+  color: rgba(255,255,255,.34);
 }
+
 
 .status {
   position: fixed;
   bottom: 18px;
   right: 18px;
+
   z-index: 50;
+
   font-size: 8px;
   letter-spacing: .18em;
-  color: rgba(255,255,255,.25);
+
+  color: rgba(255,255,255,.22);
 }
 
-/* OPENING */
+
+/* ------------------------------
+   INTRO
+------------------------------ */
 
 .intro {
   min-height: 100svh;
+
   display: flex;
   justify-content: center;
   align-items: center;
+
   position: relative;
   overflow: hidden;
 
   background:
-    radial-gradient(circle at 50% 55%,
-      rgba(105, 13, 63, .30),
-      transparent 28%),
-    radial-gradient(circle at 25% 25%,
-      rgba(18, 63, 42, .30),
-      transparent 35%),
-    #010201;
+    linear-gradient(
+      180deg,
+      #010101 0%,
+      #020302 45%,
+      #010101 100%
+    );
 }
+
+
+/* strange barely-visible vertical structures */
 
 .intro::before {
   content: "";
+
   position: absolute;
-  width: 120%;
-  height: 120%;
+
+  width: 130%;
+  height: 130%;
+
   background:
     repeating-linear-gradient(
-      115deg,
-      transparent 0 45px,
-      rgba(18,50,31,.12) 47px 70px,
-      transparent 73px 115px
+      93deg,
+      transparent 0px,
+      transparent 55px,
+      rgba(255,255,255,.015) 57px,
+      transparent 60px,
+      transparent 110px
     );
-  filter: blur(12px);
-  animation: forestMove 16s ease-in-out infinite alternate;
+
+  filter: blur(3px);
+
+  animation: drift 18s ease-in-out infinite alternate;
 }
 
-@keyframes forestMove {
+
+@keyframes drift {
+
   from {
-    transform: scale(1.05) translate(-2%,0);
+    transform:
+      scale(1.05)
+      translate(-2%,0);
   }
+
   to {
-    transform: scale(1.15) translate(3%,-2%);
+    transform:
+      scale(1.12)
+      translate(3%,-1%);
   }
+
 }
+
 
 .error {
   position: relative;
+
   text-align: center;
+
   z-index: 2;
+
   animation: emerge 4s ease forwards;
 }
 
+
 .error-number {
   font-family: Georgia, serif;
-  font-size: clamp(85px, 28vw, 180px);
+
+  font-size:
+    clamp(85px, 28vw, 180px);
+
   line-height: .8;
+
   font-weight: normal;
+
   letter-spacing: -.08em;
-  color: rgba(225,217,218,.92);
+
+  color:
+    rgba(225,217,218,.92);
+
   text-shadow:
-    3px 0 rgba(255,0,76,.18),
-    -3px 0 rgba(0,170,130,.15),
-    0 0 40px rgba(116,21,65,.5);
+    3px 0 rgba(255,0,76,.16),
+    -3px 0 rgba(0,170,130,.12),
+    0 0 35px rgba(255,255,255,.05);
 }
+
 
 .error-text {
   margin-top: 30px;
+
   font-size: 10px;
+
   letter-spacing: .45em;
-  color: rgba(255,255,255,.48);
+
+  color:
+    rgba(255,255,255,.46);
 }
+
 
 .enter {
   margin-top: 80px;
+
   font-size: 9px;
+
   letter-spacing: .3em;
-  color: rgba(255,255,255,.28);
-  animation: blink 2.3s infinite;
+
+  color:
+    rgba(255,255,255,.25);
+
+  animation:
+    blink 2.3s infinite;
 }
+
 
 @keyframes blink {
-  50% { opacity: .2; }
+
+  50% {
+    opacity: .2;
+  }
+
 }
+
 
 @keyframes emerge {
+
   from {
     opacity: 0;
-    filter: blur(15px);
-    transform: scale(.96);
+
+    filter:
+      blur(15px);
+
+    transform:
+      scale(.96);
   }
+
   to {
     opacity: 1;
-    filter: blur(0);
-    transform: scale(1);
+
+    filter:
+      blur(0);
+
+    transform:
+      scale(1);
   }
+
 }
 
-/* POEM */
+
+/* ------------------------------
+   POEM SECTIONS
+------------------------------ */
 
 .fragment {
   min-height: 100svh;
+
   display: flex;
   align-items: center;
+
   position: relative;
-  padding: 18vh 10vw;
+
+  padding:
+    18vh 10vw;
+
   overflow: hidden;
+
+  background:
+    linear-gradient(
+      180deg,
+      #010101 0%,
+      #030303 50%,
+      #010101 100%
+    );
 }
 
-.fragment:nth-child(even) {
-  justify-content: flex-end;
+
+/* faint damaged texture */
+
+.fragment::before {
+  content: "";
+
+  position: absolute;
+
+  inset: -20%;
+
+  pointer-events: none;
+
+  background:
+
+    repeating-linear-gradient(
+      87deg,
+      transparent 0px,
+      transparent 70px,
+      rgba(255,255,255,.012) 71px,
+      transparent 73px
+    ),
+
+    repeating-linear-gradient(
+      3deg,
+      transparent 0px,
+      transparent 120px,
+      rgba(255,255,255,.008) 121px,
+      transparent 123px
+    );
+
+  opacity: .5;
+
+  transform:
+    rotate(-2deg);
 }
 
-.fragment:nth-child(odd) {
-  justify-content: flex-start;
+
+.fragment:nth-of-type(even) {
+  justify-content:
+    flex-end;
 }
+
+
+.fragment:nth-of-type(odd) {
+  justify-content:
+    flex-start;
+}
+
+
+/* ------------------------------
+   POEM TEXT
+------------------------------ */
 
 .words {
   position: relative;
+
   z-index: 5;
-  max-width: 650px;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(27px, 6vw, 55px);
-  line-height: 1.35;
-  letter-spacing: -.015em;
+
+  max-width:
+    650px;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:
+    clamp(27px, 6vw, 55px);
+
+  line-height:
+    1.35;
+
+  letter-spacing:
+    -.015em;
 
   text-shadow:
     0 0 20px rgba(0,0,0,.95),
     0 0 50px rgba(0,0,0,.8);
 
-  animation: breathe 7s ease-in-out infinite alternate;
+  animation:
+    breathe 7s ease-in-out infinite alternate;
 }
+
 
 @keyframes breathe {
+
   from {
-    transform: translateY(0);
+    transform:
+      translateY(0);
   }
+
   to {
-    transform: translateY(-9px);
+    transform:
+      translateY(-9px);
   }
+
 }
+
 
 .small {
-  font-size: .48em;
-  font-family: "Courier New", monospace;
-  letter-spacing: .12em;
-  opacity: .48;
+  font-size:
+    .48em;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  letter-spacing:
+    .12em;
+
+  opacity:
+    .45;
 }
 
-/* DIFFERENT WORLDS */
+
+/* ------------------------------
+   REALITY
+------------------------------ */
 
 .reality {
   background:
-    linear-gradient(
-      rgba(0,0,0,.40),
-      rgba(0,0,0,.78)
-    ),
-    radial-gradient(circle at 30% 40%, #173529, transparent 35%),
-    radial-gradient(circle at 75% 70%, #271018, transparent 30%),
-    #020403;
-}
 
-.hierarchy {
-  background:
-    repeating-linear-gradient(
-      90deg,
-      #020202 0px,
-      #020202 38px,
-      #0b0b0b 39px,
-      #020202 41px
+    linear-gradient(
+      180deg,
+      #010201 0%,
+      #020302 45%,
+      #010101 100%
     );
 }
 
-.hierarchy .words {
-  margin-left: 12vw;
+
+/* ------------------------------
+   HIERARCHY
+------------------------------ */
+
+.hierarchy {
+
+  background:
+
+    repeating-linear-gradient(
+      90deg,
+
+      #010101 0px,
+
+      #010101 55px,
+
+      #040404 56px,
+
+      #010101 58px
+    );
 }
+
+
+.hierarchy .words {
+  margin-left:
+    12vw;
+}
+
+
+/* ------------------------------
+   REVELATION
+------------------------------ */
 
 .revelation {
+
   background:
-    radial-gradient(
-      circle at 50% 50%,
-      rgba(228,175,120,.28),
-      transparent 12%
-    ),
-    radial-gradient(
-      circle at 50% 50%,
-      rgba(110,24,57,.25),
-      transparent 35%
-    ),
-    #040203;
+
+    linear-gradient(
+      180deg,
+
+      #010101 0%,
+
+      #050504 50%,
+
+      #010101 100%
+    );
 }
+
+
+/* ------------------------------
+   FANTASY
+------------------------------ */
 
 .fantasy {
+
   background:
-    radial-gradient(
-      circle at 70% 25%,
-      rgba(160,24,100,.30),
-      transparent 28%
-    ),
-    radial-gradient(
-      circle at 25% 75%,
-      rgba(20,80,61,.30),
-      transparent 32%
-    ),
-    linear-gradient(140deg,#010202,#10050d,#020202);
+
+    linear-gradient(
+      155deg,
+
+      #010101 0%,
+
+      #040203 48%,
+
+      #010101 100%
+    );
 }
+
 
 .fantasy .words {
-  font-style: italic;
+  font-style:
+    italic;
 }
 
-/* FINAL */
+
+/* ------------------------------
+   FINAL SECTION
+------------------------------ */
 
 .dead {
-  min-height: 125svh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
+
+  min-height:
+    125svh;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  text-align:
+    center;
+
+  position:
+    relative;
+
+  overflow:
+    hidden;
 
   background:
-    radial-gradient(
-      circle at center,
-      rgba(128,15,58,.28),
-      transparent 25%
-    ),
     #000;
 }
 
+
+/* enormous ghost circle */
+
 .dead::before {
+
   content: "";
-  position: absolute;
-  width: 140vw;
-  height: 140vw;
-  border-radius: 50%;
-  border: 1px solid rgba(255,255,255,.05);
+
+  position:
+    absolute;
+
+  width:
+    140vw;
+
+  height:
+    140vw;
+
+  border-radius:
+    50%;
+
+  border:
+    1px solid
+    rgba(255,255,255,.025);
+
   box-shadow:
-    0 0 80px rgba(117,10,56,.20),
-    inset 0 0 100px rgba(117,10,56,.10);
-  animation: pulse 8s ease-in-out infinite;
+
+    0 0 100px
+    rgba(255,255,255,.018),
+
+    inset 0 0 100px
+    rgba(255,255,255,.012);
+
+  animation:
+    pulse 8s ease-in-out infinite;
 }
+
 
 @keyframes pulse {
+
   50% {
-    transform: scale(.88);
-    opacity: .45;
+
+    transform:
+      scale(.88);
+
+    opacity:
+      .35;
+
   }
+
 }
+
 
 .final-line {
-  position: relative;
-  z-index: 4;
-  font-family: Georgia, serif;
-  font-size: clamp(40px, 10vw, 95px);
-  line-height: 1.05;
-  max-width: 850px;
-  padding: 30px;
+
+  position:
+    relative;
+
+  z-index:
+    4;
+
+  font-family:
+    Georgia,
+    serif;
+
+  font-size:
+    clamp(40px, 10vw, 95px);
+
+  line-height:
+    1.05;
+
+  max-width:
+    850px;
+
+  padding:
+    30px;
+
   text-shadow:
-    0 0 30px rgba(150,25,74,.45);
+    0 0 30px
+    rgba(255,255,255,.05);
 }
+
 
 .alive {
-  font-style: italic;
+
+  font-style:
+    italic;
+
+  color:
+    rgba(255,255,255,.96);
+
 }
+
 
 .dead-word {
-  opacity: .43;
+
+  opacity:
+    .38;
+
 }
+
+
+/* ------------------------------
+   FOOTER
+------------------------------ */
 
 .footer {
-  min-height: 70svh;
-  background: #000;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+
+  min-height:
+    70svh;
+
+  background:
+    #000;
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  text-align:
+    center;
 }
+
 
 .footer-name {
-  font-size: 9px;
-  letter-spacing: .45em;
-  opacity: .28;
+
+  font-size:
+    9px;
+
+  letter-spacing:
+    .45em;
+
+  opacity:
+    .26;
 }
+
 
 .footer-end {
-  margin-top: 40px;
-  font-family: Georgia, serif;
-  font-style: italic;
-  font-size: 12px;
-  opacity: .18;
+
+  margin-top:
+    40px;
+
+  font-family:
+    Georgia,
+    serif;
+
+  font-style:
+    italic;
+
+  font-size:
+    12px;
+
+  opacity:
+    .16;
 }
 
-/* random corruption */
+
+/* ------------------------------
+   GLITCH
+------------------------------ */
 
 .glitch {
-  position: relative;
-  display: inline-block;
+
+  position:
+    relative;
+
+  display:
+    inline-block;
 }
+
 
 .glitch::before {
-  content: attr(data-text);
-  position: absolute;
-  left: 2px;
-  top: 0;
-  color: rgba(255,0,70,.32);
-  clip-path: inset(42% 0 43% 0);
-  animation: glitch 4s infinite;
+
+  content:
+    attr(data-text);
+
+  position:
+    absolute;
+
+  left:
+    2px;
+
+  top:
+    0;
+
+  color:
+    rgba(255,0,70,.25);
+
+  clip-path:
+    inset(42% 0 43% 0);
+
+  animation:
+    glitch 4s infinite;
 }
 
+
 @keyframes glitch {
-  0%,91%,100% {
-    transform: translate(0);
+
+  0%,
+  91%,
+  100% {
+
+    transform:
+      translate(0);
+
   }
+
   92% {
-    transform: translate(-5px,1px);
+
+    transform:
+      translate(-5px,1px);
+
   }
+
   94% {
-    transform: translate(5px,-1px);
+
+    transform:
+      translate(5px,-1px);
+
   }
+
   96% {
-    transform: translate(-2px,0);
+
+    transform:
+      translate(-2px,0);
+
   }
+
 }
+
 </style>
 </head>
 
+
 <body>
 
+
 <div class="archive">
-ARCHIVE_403<br>
+
+ARCHIVE_403
+
+<br>
+
 SUBJECT // UNKNOWN
+
 </div>
+
 
 <div class="status">
+
 SIGNAL DETECTED
+
 </div>
 
+
+
+<!-- INTRO -->
 
 <section class="intro">
 
-  <div class="error">
 
-    <div class="error-number glitch"
-         data-text="403">
-      403
-    </div>
+<div class="error">
 
-    <div class="error-text">
-      USER NOT FOUND
-    </div>
 
-    <div class="enter">
-      ↓ ENTER ARCHIVE ↓
-    </div>
+<div
+class="error-number glitch"
+data-text="403">
 
-  </div>
+403
+
+</div>
+
+
+<div class="error-text">
+
+USER NOT FOUND
+
+</div>
+
+
+<div class="enter">
+
+↓ ENTER ARCHIVE ↓
+
+</div>
+
+
+</div>
+
 
 </section>
 
+
+
+<!-- REALITY -->
 
 <section class="fragment reality">
 
-  <div class="words">
-    Walking between what’s real<br>
-    <span class="small">
-      wonder if it’s a dream
-    </span>
-  </div>
+
+<div class="words">
+
+Walking between what’s real
+
+<br>
+
+<span class="small">
+
+wonder if it’s a dream
+
+</span>
+
+
+</div>
+
 
 </section>
 
+
+
+<!-- HIERARCHY -->
 
 <section class="fragment hierarchy">
 
-  <div class="words">
-    conclusions are insufficient
-    <br><br>
 
-    <span class="small">
-      based on hierarchy
-    </span>
-  </div>
+<div class="words">
+
+conclusions are insufficient
+
+<br><br>
+
+
+<span class="small">
+
+based on hierarchy
+
+</span>
+
+
+</div>
+
 
 </section>
 
+
+
+<!-- REVELATION -->
 
 <section class="fragment revelation">
 
-  <div class="words">
-    there’s always
-    <br>
-    a new beginning
 
-    <br><br>
+<div class="words">
 
-    <span class="small">
-      revelations
-    </span>
-  </div>
+there’s always
+
+<br>
+
+a new beginning
+
+
+<br><br>
+
+
+<span class="small">
+
+revelations
+
+</span>
+
+
+</div>
+
 
 </section>
 
+
+
+<!-- FANTASY -->
 
 <section class="fragment fantasy">
 
-  <div class="words">
-    conventionality’s
-    <br>
-    a killer
 
-    <br><br>
+<div class="words">
 
-    I’m absurd
+conventionality’s
 
-    <br>
+<br>
 
-    <span class="small">
-      absorbed by fantasies
-    </span>
-  </div>
+a killer
+
+
+<br><br>
+
+
+I’m absurd
+
+
+<br>
+
+
+<span class="small">
+
+absorbed by fantasies
+
+</span>
+
+
+</div>
+
 
 </section>
 
+
+
+<!-- FINAL -->
 
 <section class="dead">
 
-  <div class="final-line">
 
-    yet I’m
-    <span class="alive">
-      alive
-    </span>
+<div class="final-line">
 
-    <br><br>
 
-    in a sea of
-    <br>
+yet I’m
 
-    <span class="dead-word glitch"
-          data-text="the dead">
-      the dead
-    </span>
+<span class="alive">
 
-  </div>
+alive
+
+</span>
+
+
+<br><br>
+
+
+in a sea of
+
+<br>
+
+
+<span
+class="dead-word glitch"
+data-text="the dead">
+
+the dead
+
+</span>
+
+
+</div>
+
 
 </section>
 
+
+
+<!-- END -->
 
 <section class="footer">
 
-  <div class="footer-name">
-    ERASEDDATA403
-  </div>
 
-  <div class="footer-end">
-    end of recovered file
-  </div>
+<div class="footer-name">
+
+ERASEDDATA403
+
+</div>
+
+
+<div class="footer-end">
+
+end of recovered file
+
+</div>
+
 
 </section>
 
+
 </body>
+
 </html>
